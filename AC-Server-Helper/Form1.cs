@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace AC_Server_Helper {
@@ -66,7 +61,7 @@ namespace AC_Server_Helper {
 
         private void createFileButton_Click(object sender, EventArgs e) {
             // Get the cars
-            Dictionary<string, int> cars = new Dictionary<string, int>();
+            Dictionary<string, int> cars = new Dictionary<string, int>();            
             foreach (string v in SelectedBox.Items) {
                 if (cars.ContainsKey(v)) {
                     cars[v]++;
@@ -74,6 +69,20 @@ namespace AC_Server_Helper {
                 else {
                     cars.Add(v, 1);
                 }
+            }
+            if (cars.Count == 0) {
+                // No Cars
+                MessageBox.Show("No Cars Selected", "AC Server File Helper", MessageBoxButtons.OK, MessageBoxIcon.Error);                
+                return;
+            }
+            if (trackBox.Text == "") {
+                // No track
+                MessageBox.Show("No Track Selected", "AC Server File Helper", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (numClientsBox.Value != SelectedBox.Items.Count) {
+                if (MessageBox.Show("Not the Correct amount of cars selected", "AC Server File Helper", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.Cancel)
+                    return;
             }
             var pathServer = serverPathBox.Text;            
             int i = 0;
@@ -115,14 +124,14 @@ namespace AC_Server_Helper {
             swS.WriteLine("SLEEP_TIME=1");
             swS.WriteLine("VOTING_QUORUM=75");
             swS.WriteLine("VOTE_DURATION=20");
-            swS.WriteLine("BLACKLIST_MODE=0");            
-            swS.WriteLine("TC_ALLOWED=1");
-            swS.WriteLine("ABS_ALLOWED=1");
-            swS.WriteLine("STABILITY_ALLOWED=1");
-            swS.WriteLine("AUTOCLUTCH_ALLOWED=1");            
-            swS.WriteLine("DAMAGE_MULTIPLIER=0");
-            swS.WriteLine("FUEL_RATE=100");
-            swS.WriteLine("TYRE_WEAR_RATE=100");
+            swS.WriteLine("BLACKLIST_MODE=0");                 
+            swS.WriteLine("TC_ALLOWED={0}",Convert.ToInt32(TCBox.CheckState));
+            swS.WriteLine("ABS_ALLOWED={0}",Convert.ToInt32(ABSBox.CheckState));
+            swS.WriteLine("STABILITY_ALLOWED={0}", Convert.ToInt32(SCBox.CheckState));
+            swS.WriteLine("AUTOCLUTCH_ALLOWED={0}", Convert.ToInt32(ACBox.CheckState));
+            swS.WriteLine("DAMAGE_MULTIPLIER={0}", DamageMultBox.Value);
+            swS.WriteLine("FUEL_RATE={0}", FuelMultBox.Value);
+            swS.WriteLine("TYRE_WEAR_RATE={0}", TyreWearMultBox.Value);
             swS.WriteLine("CLIENT_SEND_INTERVAL_HZ=20");
             swS.WriteLine("USE_FLOW_CONTROL=0");
             swS.WriteLine("");
@@ -155,7 +164,7 @@ namespace AC_Server_Helper {
             }
             // All Done!
             swS.Close();
-
+            MessageBox.Show("Files Succesfully created!", "AC Server File Helper", MessageBoxButtons.OK, MessageBoxIcon.None);
         }
 
         private void numClientsBox_ValueChanged(object sender, EventArgs e) {
