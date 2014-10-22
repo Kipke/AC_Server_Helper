@@ -79,6 +79,8 @@
             this.ACBox = new System.Windows.Forms.CheckBox();
             this.ABSBox = new System.Windows.Forms.CheckBox();
             this.TCBox = new System.Windows.Forms.CheckBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.timeBox = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.numClientsBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.practiceTimeBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.qualifyingTimeBox)).BeginInit();
@@ -86,6 +88,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.TyreWearMultBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FuelMultBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DamageMultBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeBox)).BeginInit();
             this.SuspendLayout();
             // 
             // trackBox
@@ -107,7 +110,7 @@
             // 
             // inButton
             // 
-            this.inButton.Location = new System.Drawing.Point(229, 311);
+            this.inButton.Location = new System.Drawing.Point(229, 335);
             this.inButton.Name = "inButton";
             this.inButton.Size = new System.Drawing.Size(75, 23);
             this.inButton.TabIndex = 5;
@@ -117,7 +120,7 @@
             // 
             // outButton
             // 
-            this.outButton.Location = new System.Drawing.Point(229, 341);
+            this.outButton.Location = new System.Drawing.Point(229, 365);
             this.outButton.Name = "outButton";
             this.outButton.Size = new System.Drawing.Size(75, 23);
             this.outButton.TabIndex = 6;
@@ -130,7 +133,7 @@
             this.AvailableBox.FormattingEnabled = true;
             this.AvailableBox.Items.AddRange(new object[] {
             "{No Cars Yet}"});
-            this.AvailableBox.Location = new System.Drawing.Point(32, 311);
+            this.AvailableBox.Location = new System.Drawing.Point(32, 335);
             this.AvailableBox.Name = "AvailableBox";
             this.AvailableBox.Size = new System.Drawing.Size(170, 342);
             this.AvailableBox.TabIndex = 8;
@@ -138,7 +141,7 @@
             // SelectedBox
             // 
             this.SelectedBox.FormattingEnabled = true;
-            this.SelectedBox.Location = new System.Drawing.Point(334, 311);
+            this.SelectedBox.Location = new System.Drawing.Point(334, 335);
             this.SelectedBox.Name = "SelectedBox";
             this.SelectedBox.Size = new System.Drawing.Size(170, 342);
             this.SelectedBox.TabIndex = 9;
@@ -231,8 +234,9 @@
             // 
             this.numClientsBox.Location = new System.Drawing.Point(137, 93);
             this.numClientsBox.Name = "numClientsBox";
-            this.numClientsBox.Size = new System.Drawing.Size(60, 20);
+            this.numClientsBox.Size = new System.Drawing.Size(52, 20);
             this.numClientsBox.TabIndex = 19;
+            this.numClientsBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numClientsBox.Value = new decimal(new int[] {
             10,
             0,
@@ -310,7 +314,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(29, 205);
+            this.label10.Location = new System.Drawing.Point(29, 232);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(46, 13);
             this.label10.TabIndex = 28;
@@ -319,7 +323,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(29, 231);
+            this.label11.Location = new System.Drawing.Point(29, 258);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(53, 13);
             this.label11.TabIndex = 29;
@@ -328,7 +332,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(30, 256);
+            this.label12.Location = new System.Drawing.Point(30, 283);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(33, 13);
             this.label12.TabIndex = 30;
@@ -337,7 +341,7 @@
             // practiceCheck
             // 
             this.practiceCheck.AutoSize = true;
-            this.practiceCheck.Location = new System.Drawing.Point(137, 205);
+            this.practiceCheck.Location = new System.Drawing.Point(137, 232);
             this.practiceCheck.Name = "practiceCheck";
             this.practiceCheck.Size = new System.Drawing.Size(77, 17);
             this.practiceCheck.TabIndex = 31;
@@ -350,7 +354,7 @@
             this.qualifyingCheck.AutoSize = true;
             this.qualifyingCheck.Checked = true;
             this.qualifyingCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.qualifyingCheck.Location = new System.Drawing.Point(137, 231);
+            this.qualifyingCheck.Location = new System.Drawing.Point(137, 258);
             this.qualifyingCheck.Name = "qualifyingCheck";
             this.qualifyingCheck.Size = new System.Drawing.Size(77, 17);
             this.qualifyingCheck.TabIndex = 32;
@@ -363,7 +367,7 @@
             this.raceCheck.AutoSize = true;
             this.raceCheck.Checked = true;
             this.raceCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.raceCheck.Location = new System.Drawing.Point(137, 255);
+            this.raceCheck.Location = new System.Drawing.Point(137, 282);
             this.raceCheck.Name = "raceCheck";
             this.raceCheck.Size = new System.Drawing.Size(52, 17);
             this.raceCheck.TabIndex = 33;
@@ -373,10 +377,11 @@
             // 
             // practiceTimeBox
             // 
-            this.practiceTimeBox.Location = new System.Drawing.Point(223, 204);
+            this.practiceTimeBox.Location = new System.Drawing.Point(223, 231);
             this.practiceTimeBox.Name = "practiceTimeBox";
             this.practiceTimeBox.Size = new System.Drawing.Size(35, 20);
             this.practiceTimeBox.TabIndex = 34;
+            this.practiceTimeBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.practiceTimeBox.Value = new decimal(new int[] {
             10,
             0,
@@ -385,10 +390,11 @@
             // 
             // qualifyingTimeBox
             // 
-            this.qualifyingTimeBox.Location = new System.Drawing.Point(223, 228);
+            this.qualifyingTimeBox.Location = new System.Drawing.Point(223, 255);
             this.qualifyingTimeBox.Name = "qualifyingTimeBox";
             this.qualifyingTimeBox.Size = new System.Drawing.Size(35, 20);
             this.qualifyingTimeBox.TabIndex = 35;
+            this.qualifyingTimeBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.qualifyingTimeBox.Value = new decimal(new int[] {
             10,
             0,
@@ -397,10 +403,11 @@
             // 
             // raceLapsBox
             // 
-            this.raceLapsBox.Location = new System.Drawing.Point(223, 254);
+            this.raceLapsBox.Location = new System.Drawing.Point(223, 281);
             this.raceLapsBox.Name = "raceLapsBox";
             this.raceLapsBox.Size = new System.Drawing.Size(35, 20);
             this.raceLapsBox.TabIndex = 36;
+            this.raceLapsBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.raceLapsBox.Value = new decimal(new int[] {
             5,
             0,
@@ -410,7 +417,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(32, 278);
+            this.label13.Location = new System.Drawing.Point(32, 302);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(31, 13);
             this.label13.TabIndex = 37;
@@ -419,7 +426,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(32, 295);
+            this.label14.Location = new System.Drawing.Point(32, 319);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(53, 13);
             this.label14.TabIndex = 38;
@@ -428,7 +435,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(334, 293);
+            this.label15.Location = new System.Drawing.Point(334, 317);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(49, 13);
             this.label15.TabIndex = 39;
@@ -436,7 +443,7 @@
             // 
             // createFileButton
             // 
-            this.createFileButton.Location = new System.Drawing.Point(429, 659);
+            this.createFileButton.Location = new System.Drawing.Point(429, 683);
             this.createFileButton.Name = "createFileButton";
             this.createFileButton.Size = new System.Drawing.Size(75, 23);
             this.createFileButton.TabIndex = 40;
@@ -447,7 +454,7 @@
             // selectedLabel
             // 
             this.selectedLabel.AutoSize = true;
-            this.selectedLabel.Location = new System.Drawing.Point(474, 293);
+            this.selectedLabel.Location = new System.Drawing.Point(474, 317);
             this.selectedLabel.Name = "selectedLabel";
             this.selectedLabel.Size = new System.Drawing.Size(30, 13);
             this.selectedLabel.TabIndex = 41;
@@ -513,6 +520,7 @@
             this.TyreWearMultBox.Name = "TyreWearMultBox";
             this.TyreWearMultBox.Size = new System.Drawing.Size(42, 20);
             this.TyreWearMultBox.TabIndex = 56;
+            this.TyreWearMultBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.TyreWearMultBox.Value = new decimal(new int[] {
             100,
             0,
@@ -525,6 +533,7 @@
             this.FuelMultBox.Name = "FuelMultBox";
             this.FuelMultBox.Size = new System.Drawing.Size(42, 20);
             this.FuelMultBox.TabIndex = 57;
+            this.FuelMultBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.FuelMultBox.Value = new decimal(new int[] {
             100,
             0,
@@ -537,6 +546,7 @@
             this.DamageMultBox.Name = "DamageMultBox";
             this.DamageMultBox.Size = new System.Drawing.Size(42, 20);
             this.DamageMultBox.TabIndex = 58;
+            this.DamageMultBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label18
             // 
@@ -618,11 +628,47 @@
             this.TCBox.TabIndex = 62;
             this.TCBox.UseVisualStyleBackColor = true;
             // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(30, 205);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(67, 13);
+            this.label25.TabIndex = 63;
+            this.label25.Text = "Time of Day:";
+            // 
+            // timeBox
+            // 
+            this.timeBox.DecimalPlaces = 2;
+            this.timeBox.Location = new System.Drawing.Point(137, 206);
+            this.timeBox.Maximum = new decimal(new int[] {
+            18,
+            0,
+            0,
+            0});
+            this.timeBox.Minimum = new decimal(new int[] {
+            6,
+            0,
+            0,
+            0});
+            this.timeBox.Name = "timeBox";
+            this.timeBox.Size = new System.Drawing.Size(52, 20);
+            this.timeBox.TabIndex = 64;
+            this.timeBox.Tag = "";
+            this.timeBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.timeBox.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
             // Form1
             // 
             this.AcceptButton = this.createFileButton;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(534, 691);
+            this.ClientSize = new System.Drawing.Size(534, 711);
+            this.Controls.Add(this.timeBox);
+            this.Controls.Add(this.label25);
             this.Controls.Add(this.TCBox);
             this.Controls.Add(this.ABSBox);
             this.Controls.Add(this.ACBox);
@@ -691,6 +737,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.TyreWearMultBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FuelMultBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DamageMultBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -753,6 +800,8 @@
         private System.Windows.Forms.CheckBox ACBox;
         private System.Windows.Forms.CheckBox ABSBox;
         private System.Windows.Forms.CheckBox TCBox;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.NumericUpDown timeBox;
     }
 }
 

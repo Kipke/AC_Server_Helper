@@ -110,7 +110,9 @@ namespace AC_Server_Helper {
             carString = carString.Remove(carString.Length - 1);
             swS.WriteLine("CARS={0}", carString);
             swS.WriteLine("TRACK={0}", trackBox.SelectedItem);
-            swS.WriteLine("SUN_ANGLE=-8");
+            // 8 --> -32 18 --> 32 
+            int n = (int)(((int)timeBox.Value - 8) * 6.4 -32);
+            swS.WriteLine("SUN_ANGLE={0}",n);
             swS.WriteLine("MAX_CLIENTS={0}", numClientsBox.Value);
             swS.WriteLine("RACE_OVER_TIME=60");
             swS.WriteLine("ALLOWED_TYRES_OUT=3");
