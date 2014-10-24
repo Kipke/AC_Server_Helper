@@ -110,8 +110,9 @@ namespace AC_Server_Helper {
             carString = carString.Remove(carString.Length - 1);
             swS.WriteLine("CARS={0}", carString);
             swS.WriteLine("TRACK={0}", trackBox.SelectedItem);
-            // 8 --> -32 18 --> 32 
-            int n = (int)(((int)timeBox.Value - 8) * 6.4 -32);
+            // 8 --> -90 18 --> 90 
+            // -90 = 08:00 | -64 = 09:00 | -48 = 10:00 | -32 = 11:00 | -16 = 12:00 | 0 = 13:00 | 16 = 14:00 | 32 = 15:00 | 48 = 16:00 | 64 = 17:00 | 90 = 18:00
+            int n = (int)(((int)timeBox.Value - 8) * 9 - 90);
             swS.WriteLine("SUN_ANGLE={0}",n);
             swS.WriteLine("MAX_CLIENTS={0}", numClientsBox.Value);
             swS.WriteLine("RACE_OVER_TIME=60");

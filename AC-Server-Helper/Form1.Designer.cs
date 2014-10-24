@@ -640,7 +640,7 @@
             // timeBox
             // 
             this.timeBox.DecimalPlaces = 2;
-            this.timeBox.Location = new System.Drawing.Point(137, 206);
+            this.timeBox.Location = new System.Drawing.Point(137, 203);
             this.timeBox.Maximum = new decimal(new int[] {
             18,
             0,
@@ -653,11 +653,11 @@
             0});
             this.timeBox.Name = "timeBox";
             this.timeBox.Size = new System.Drawing.Size(52, 20);
-            this.timeBox.TabIndex = 64;
+            this.timeBox.TabIndex = 19;
             this.timeBox.Tag = "";
             this.timeBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.timeBox.Value = new decimal(new int[] {
-            10,
+            13,
             0,
             0,
             0});
