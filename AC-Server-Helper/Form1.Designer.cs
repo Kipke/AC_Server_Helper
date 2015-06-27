@@ -173,6 +173,7 @@
             this.mainPathBox.Name = "mainPathBox";
             this.mainPathBox.Size = new System.Drawing.Size(286, 20);
             this.mainPathBox.TabIndex = 12;
+            this.mainPathBox.Text = "D:\\SteamLibrary\\SteamApps\\common\\assettocorsa";
             this.mainPathBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mainPathBox_KeyPress);
             this.mainPathBox.Leave += new System.EventHandler(this.update);
             this.mainPathBox.Validated += new System.EventHandler(this.update);
