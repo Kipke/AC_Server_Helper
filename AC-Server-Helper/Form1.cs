@@ -9,10 +9,10 @@ namespace AC_Server_Helper {
             InitializeComponent();
         }
 
-        
+
         #region event handlers
         private void Form1_Load(object sender, EventArgs e) {
-            update();            
+            update();
         }
 
         private void inButton_Click(object sender, EventArgs e) {
@@ -27,6 +27,8 @@ namespace AC_Server_Helper {
         private void outButton_Click(object sender, EventArgs e) {
             var p = SelectedBox.SelectedItem;
             SelectedBox.Items.Remove(p);
+            if (SelectedBox.SelectedIndex < 0 && SelectedBox.Items.Count > 0)
+                SelectedBox.SelectedIndex = 0;
             var v = SelectedBox.Items.Count;
             var s = selectedLabel.Text.Split('/');
             s[0] = v.ToString();
@@ -61,7 +63,7 @@ namespace AC_Server_Helper {
 
         private void createFileButton_Click(object sender, EventArgs e) {
             // Get the cars
-            Dictionary<string, int> cars = new Dictionary<string, int>();            
+            Dictionary<string, int> cars = new Dictionary<string, int>();
             foreach (string v in SelectedBox.Items) {
                 if (cars.ContainsKey(v)) {
                     cars[v]++;
@@ -72,7 +74,7 @@ namespace AC_Server_Helper {
             }
             if (cars.Count == 0) {
                 // No Cars
-                MessageBox.Show("No Cars Selected", "AC Server File Helper", MessageBoxButtons.OK, MessageBoxIcon.Error);                
+                MessageBox.Show("No Cars Selected", "AC Server File Helper", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (trackBox.Text == "") {
@@ -84,7 +86,7 @@ namespace AC_Server_Helper {
                 if (MessageBox.Show("Not the Correct amount of cars selected", "AC Server File Helper", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.Cancel)
                     return;
             }
-            var pathServer = serverPathBox.Text;            
+            var pathServer = serverPathBox.Text;
             int i = 0;
             StreamWriter swE = new StreamWriter(pathServer + @"\cfg\entry_list.ini", false);
             foreach (string s in cars.Keys) {
@@ -93,12 +95,12 @@ namespace AC_Server_Helper {
                 entryList = AddCarToEntries(entryList, i, i + cars[s], s, skins);
                 foreach (string t in entryList) {
                     swE.WriteLine(t);
-                }                
+                }
                 i += cars[s];
             }
             // EntryList done
             swE.Close();
-            
+
             // Start writing server_cfg
             StreamWriter swS = new StreamWriter(pathServer + @"\cfg\server_cfg.ini", false);
             swS.WriteLine("[SERVER]");
@@ -113,7 +115,7 @@ namespace AC_Server_Helper {
             // 8 --> -90 18 --> 90 
             // -90 = 08:00 | -64 = 09:00 | -48 = 10:00 | -32 = 11:00 | -16 = 12:00 | 0 = 13:00 | 16 = 14:00 | 32 = 15:00 | 48 = 16:00 | 64 = 17:00 | 90 = 18:00
             int n = (int)(((int)timeBox.Value - 8) * 9 - 90);
-            swS.WriteLine("SUN_ANGLE={0}",n);
+            swS.WriteLine("SUN_ANGLE={0}", n);
             swS.WriteLine("MAX_CLIENTS={0}", numClientsBox.Value);
             swS.WriteLine("RACE_OVER_TIME=60");
             swS.WriteLine("ALLOWED_TYRES_OUT=3");
@@ -121,15 +123,15 @@ namespace AC_Server_Helper {
             swS.WriteLine("TCP_PORT={0}", tcpBox.Text);
             swS.WriteLine("HTTP_PORT={0}", httpBox.Text);
             swS.WriteLine("PASSWORD={0}", passwordBox.Text);
-            swS.WriteLine("LOOP_MODE=1");            
+            swS.WriteLine("LOOP_MODE=1");
             swS.WriteLine("REGISTER_TO_LOBBY=1");
             swS.WriteLine("PICKUP_MODE_ENABLED=1");
             swS.WriteLine("SLEEP_TIME=1");
             swS.WriteLine("VOTING_QUORUM=75");
             swS.WriteLine("VOTE_DURATION=20");
-            swS.WriteLine("BLACKLIST_MODE=0");                 
-            swS.WriteLine("TC_ALLOWED={0}",Convert.ToInt32(TCBox.CheckState));
-            swS.WriteLine("ABS_ALLOWED={0}",Convert.ToInt32(ABSBox.CheckState));
+            swS.WriteLine("BLACKLIST_MODE=0");
+            swS.WriteLine("TC_ALLOWED={0}", Convert.ToInt32(TCBox.CheckState));
+            swS.WriteLine("ABS_ALLOWED={0}", Convert.ToInt32(ABSBox.CheckState));
             swS.WriteLine("STABILITY_ALLOWED={0}", Convert.ToInt32(SCBox.CheckState));
             swS.WriteLine("AUTOCLUTCH_ALLOWED={0}", Convert.ToInt32(ACBox.CheckState));
             swS.WriteLine("DAMAGE_MULTIPLIER={0}", DamageMultBox.Value);
@@ -142,23 +144,24 @@ namespace AC_Server_Helper {
             swS.WriteLine("SESSION_START=90");
             swS.WriteLine("RANDOMNESS=1");
             swS.WriteLine("LAP_GAIN=1");
-            swS.WriteLine("SESSION_TRANSFER=90");
+            swS.WriteLine("SESSION_TRANSFER=50");
+            swS.WriteLine("ADMIN_PASSWORD={0}", AdminPass.Text);
             swS.WriteLine("");
-            if (practiceCheck.Checked) {
+            if (practiceCheck.Checked && practiceTimeBox.Value != 0) {
                 swS.WriteLine("[PRACTICE]");
                 swS.WriteLine("NAME=Practice");
                 swS.WriteLine("TIME={0}", practiceTimeBox.Value);
                 swS.WriteLine("WAIT_TIME=60");
                 swS.WriteLine("");
             }
-            if (qualifyingCheck.Checked) {
+            if (qualifyingCheck.Checked && qualifyingTimeBox.Value != 0) {
                 swS.WriteLine("[QUALIFY]");
                 swS.WriteLine("NAME=Qualify");
                 swS.WriteLine("TIME={0}", qualifyingTimeBox.Value);
                 swS.WriteLine("WAIT_TIME=60");
                 swS.WriteLine("");
             }
-            if (raceCheck.Checked) {
+            if (raceCheck.Checked && raceLapsBox.Value != 0) {
                 swS.WriteLine("[RACE]");
                 swS.WriteLine("NAME=Race");
                 swS.WriteLine("LAPS={0}", raceLapsBox.Value);
@@ -179,6 +182,7 @@ namespace AC_Server_Helper {
         #endregion
 
         #region helpers
+        private void update(object sender, EventArgs e) { update(); }
         private void update() {
             try {
                 var track = TrackList(mainPathBox.Text);

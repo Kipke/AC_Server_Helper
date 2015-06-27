@@ -81,6 +81,8 @@
             this.TCBox = new System.Windows.Forms.CheckBox();
             this.label25 = new System.Windows.Forms.Label();
             this.timeBox = new System.Windows.Forms.NumericUpDown();
+            this.label26 = new System.Windows.Forms.Label();
+            this.AdminPass = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.numClientsBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.practiceTimeBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.qualifyingTimeBox)).BeginInit();
@@ -171,8 +173,9 @@
             this.mainPathBox.Name = "mainPathBox";
             this.mainPathBox.Size = new System.Drawing.Size(286, 20);
             this.mainPathBox.TabIndex = 12;
-            this.mainPathBox.Text = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\assettocorsa";
             this.mainPathBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mainPathBox_KeyPress);
+            this.mainPathBox.Leave += new System.EventHandler(this.update);
+            this.mainPathBox.Validated += new System.EventHandler(this.update);
             // 
             // serverPathBox
             // 
@@ -180,8 +183,9 @@
             this.serverPathBox.Name = "serverPathBox";
             this.serverPathBox.Size = new System.Drawing.Size(286, 20);
             this.serverPathBox.TabIndex = 13;
-            this.serverPathBox.Text = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Assetto Corsa Dedicated Server";
+            this.serverPathBox.Text = "D:\\SteamLibrary\\SteamApps\\common\\Assetto Corsa Dedicated Server";
             this.serverPathBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.serverPathBox_KeyPress);
+            this.serverPathBox.Leave += new System.EventHandler(this.selectServerPathButton_Click);
             // 
             // SelectMainPathButton
             // 
@@ -277,7 +281,7 @@
             this.udpBox.Name = "udpBox";
             this.udpBox.Size = new System.Drawing.Size(50, 20);
             this.udpBox.TabIndex = 23;
-            this.udpBox.Text = "9456";
+            this.udpBox.Text = "9000";
             // 
             // tcpBox
             // 
@@ -285,7 +289,7 @@
             this.tcpBox.Name = "tcpBox";
             this.tcpBox.Size = new System.Drawing.Size(50, 20);
             this.tcpBox.TabIndex = 24;
-            this.tcpBox.Text = "9457";
+            this.tcpBox.Text = "9001";
             // 
             // httpBox
             // 
@@ -293,7 +297,7 @@
             this.httpBox.Name = "httpBox";
             this.httpBox.Size = new System.Drawing.Size(50, 20);
             this.httpBox.TabIndex = 25;
-            this.httpBox.Text = "8098";
+            this.httpBox.Text = "9002";
             // 
             // label9
             // 
@@ -662,11 +666,30 @@
             0,
             0});
             // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(294, 287);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(87, 13);
+            this.label26.TabIndex = 64;
+            this.label26.Text = "Admin password:";
+            // 
+            // AdminPass
+            // 
+            this.AdminPass.Location = new System.Drawing.Point(388, 287);
+            this.AdminPass.Name = "AdminPass";
+            this.AdminPass.Size = new System.Drawing.Size(116, 20);
+            this.AdminPass.TabIndex = 65;
+            this.AdminPass.Text = "kip";
+            // 
             // Form1
             // 
             this.AcceptButton = this.createFileButton;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(534, 711);
+            this.Controls.Add(this.AdminPass);
+            this.Controls.Add(this.label26);
             this.Controls.Add(this.timeBox);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.TCBox);
@@ -802,6 +825,8 @@
         private System.Windows.Forms.CheckBox TCBox;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.NumericUpDown timeBox;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.TextBox AdminPass;
     }
 }
 
