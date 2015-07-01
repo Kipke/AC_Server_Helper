@@ -139,13 +139,14 @@ namespace AC_Server_Helper {
             swS.WriteLine("TYRE_WEAR_RATE={0}", TyreWearMultBox.Value);
             swS.WriteLine("CLIENT_SEND_INTERVAL_HZ=20");
             swS.WriteLine("USE_FLOW_CONTROL=0");
+            swS.WriteLine("TYRE_BLANKETS_ALLOWED=1");
+            swS.WriteLine("ADMIN_PASSWORD={0}", AdminPass.Text);
             swS.WriteLine("");
             swS.WriteLine("[DYNAMIC TRACK]");
             swS.WriteLine("SESSION_START=90");
             swS.WriteLine("RANDOMNESS=1");
             swS.WriteLine("LAP_GAIN=1");
             swS.WriteLine("SESSION_TRANSFER=50");
-            swS.WriteLine("ADMIN_PASSWORD={0}", AdminPass.Text);
             swS.WriteLine("");
             if (practiceCheck.Checked && practiceTimeBox.Value != 0) {
                 swS.WriteLine("[PRACTICE]");
